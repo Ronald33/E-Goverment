@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 24/06/2015, 05:56:39 AM
+    Document   : login2
+    Created on : 24/06/2015, 06:31:32 AM
     Author     : Ronald
 --%>
 
@@ -22,13 +22,14 @@
 
   <span href="#" class="button" id="toggle-login">Log in</span>
 
-  <div id="login" class="oculto">
+  <div id="login">
   <div id="triangle"></div>
   <h1>Log in</h1>
   <form method="POST" action="Login">
     <input type="email" placeholder="Email" name="email" />
     <input type="password" placeholder="Password" name="password" />
     <input type="submit" value="Log in" />
+    <div class="error">Usuario desconocido</div>
   </form>
 </div>
 
