@@ -150,6 +150,7 @@
                     <div class="service-item">
                         <span class="service-icon first"></span>
                         <h3>Publicación 1</h3>
+                        <h6><b>Publicado por: <b> <a href="#">Good News</a></h6>
                         <p>Como parte del trabajo normativo y de promoción de las TICs en el Estado se realizan investigaciones sobre el uso y aplicación de la informática en diversos campos y sectores del Estado</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
@@ -157,6 +158,7 @@
                     <div class="service-item">
                         <span class="service-icon second"></span>
                         <h3>Publicación 2</h3>
+                        <h6><b>Publicado por: <b> <a href="#">Good News</a></h6>
                         <p>Desarrollo de Gobierno Electrónico y las tecnologías de información en las regiones. El seminario está dirigido a los trabajadores de la administración pública, actividad privada y público en general de la Región Ucayali. Horario: 08:30 - 17:00 horas</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
@@ -164,6 +166,7 @@
                     <div class="service-item">
                         <span class="service-icon third"></span>
                         <h3>Publicación 3</h3>
+                        <h6><b>Publicado por: <b> <a href="#">Good News</a></h6>    
                         <p>Como parte del trabajo normativo y de promoción de las TICs en el Estado se realizan investigaciones sobre el uso y aplicación de la informática en diversos campos y sectores del Estado</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
@@ -171,6 +174,7 @@
                     <div class="service-item">
                         <span class="service-icon fourth"></span>
                         <h3>Publicación 4</h3>
+                        <h6><b>Publicado por: <b> <a href="#">Good News</a></h6>
                         <p>Desarrollo de Gobierno Electrónico y las tecnologías de información en las regiones. El seminario está dirigido a los trabajadores de la administración pública, actividad privada y público en general de la Región Ucayali. Horario: 08:30 - 17:00 horas</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
@@ -182,38 +186,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="section-title">Eventos</h1>
+                    <h1 class="section-title">Tus lineas de interes</h1>
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="product-item">
                         <div class="item-thumb">
-                            <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_1.png" alt=""></span>
+                            <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_2.png" alt=""></span>
                             <div class="overlay">
                                 <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">Saber mas</a>
+                                    <a href="#nogo" class="view-detail">Entrar a la linea</a>
                                 </div>
                             </div> <!-- /.overlay -->
-                            <img src="${pageContext.request.contextPath}/resources/product1.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/product3.jpg" alt="">
                         </div> <!-- /.item-thumb -->
-                        <h3>Nunc Consectetur</h3>
-                        <span>Hora: <em class="text-muted">$260.00</em> - <em class="price">8:00 a.m.</em></span>    
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_3.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">Saber mas</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="${pageContext.request.contextPath}/resources/product2.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Donec Vitae Massa</h3>
-                        <span>Hora: <em class="text-muted">$320.00</em> - <em class="price">8:00 a.m.</em></span>
+                        <h3>Gobierno Regional de Puno</h3>
+                        <span><a href="#">Entrar a la linea</a></span>
                     </div> <!-- /.product-item -->
                 </div> <!-- /.col-md-3 -->
                 <div class="col-md-3 col-sm-6">
@@ -222,30 +211,44 @@
                             <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_2.png" alt=""></span>
                             <div class="overlay">
                                 <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">Saber mas</a>
+                                    <a href="#nogo" class="view-detail">Entrar a la linea</a>
                                 </div>
                             </div> <!-- /.overlay -->
                             <img src="${pageContext.request.contextPath}/resources/product3.jpg" alt="">
                         </div> <!-- /.item-thumb -->
-                        <h3>Fusce Dignissim Neque</h3>
-                        <span>Hora: <em class="text-muted">$480.00</em> - <em class="price">8:00 a.m.</em></span>
+                        <h3>Gobierno Regional de Puno</h3>
+                        <span><a href="#">Entrar a la linea</a></span>
                     </div> <!-- /.product-item -->
                 </div> <!-- /.col-md-3 -->
                 <div class="col-md-3 col-sm-6">
                     <div class="product-item">
                         <div class="item-thumb">
-                            <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_1.png" alt=""></span>
+                            <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_2.png" alt=""></span>
                             <div class="overlay">
                                 <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">Saber mas</a>
+                                    <a href="#nogo" class="view-detail">Entrar a la linea</a>
                                 </div>
                             </div> <!-- /.overlay -->
-                            <img src="${pageContext.request.contextPath}/resources/product4.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/product3.jpg" alt="">
                         </div> <!-- /.item-thumb -->
-                        <h3>Mauris Adipiscing Enim</h3>
-                        <span>Hora: <em class="text-muted">$260.00</em> - <em class="price">8:00 a.m.</em></span>
+                        <h3>Gobierno Regional de Puno</h3>
+                        <span><a href="#">Entrar a la linea</a></span>
                     </div> <!-- /.product-item -->
                 </div> <!-- /.col-md-3 -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-item">
+                        <div class="item-thumb">
+                            <span class="note"><img src="${pageContext.request.contextPath}/resources/small_logo_2.png" alt=""></span>
+                            <div class="overlay">
+                                <div class="overlay-inner">
+                                    <a href="#nogo" class="view-detail">Entrar a la linea</a>
+                                </div>
+                            </div> <!-- /.overlay -->
+                            <img src="${pageContext.request.contextPath}/resources/product3.jpg" alt="">
+                        </div> <!-- /.item-thumb -->
+                        <h3>Gobierno Regional de Puno</h3>
+                        <span><a href="#">Entrar a la linea</a></span>
+                    </div> <!-- /.product-item -->
                 </div> <!-- /.col-md-3 -->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
