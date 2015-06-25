@@ -4,6 +4,7 @@
     Author     : Ronald
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,12 @@
 </head>
 
 <body>
+    <div>
+        <%
+            java.text.DateFormat fecha =    new SimpleDateFormat("dd/mm/YYYY");
+        %>
+        La fecha es: <%=fecha.format(new java.util.Date())%>
+    </div>
 
   <span href="#" class="button" id="toggle-login">Log in</span>
 
