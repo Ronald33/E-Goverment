@@ -39,24 +39,7 @@ public class Index extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        ResultSet preferencias = Preferencias.getAll();
-        
-        request.setAttribute("preferencias", preferencias);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
-        
-        /*try {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Index</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Index at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -89,12 +89,12 @@ abstract public class Persona
     public Boolean existe() throws SQLException, ClassNotFoundException
     {
         DB db = new DB();
-        String sql = "SELECT 1 FROM personas WHERE pers_contrasena = ? AND pers_usuario = ? LIMIT 1";
+        String sql = "SELECT pers_nombres AS nombres FROM personas WHERE pers_contrasena = ? AND pers_usuario = ? LIMIT 1";
         ArrayList<Object> p = new ArrayList<Object>();
         p.add(this.contrasena);
         p.add(this.usuario);
         ResultSet rs = db.squery(sql, p);
-        if(rs.next()) { return true; }
+        if(rs.next()) { this.setNombres(rs.getString("nombres")); return true; }
         else { return false; }
     }
 }
