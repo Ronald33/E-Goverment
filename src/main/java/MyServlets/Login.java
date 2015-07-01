@@ -50,9 +50,11 @@ public class Login extends HttpServlet {
             
             if(u.existe())
             {
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("usuario", u.getNombres());
-                response.sendRedirect("/EG4/Inicio");
+                u.setIdByPersona();
+                HttpSession sesion = request.getSession(true);
+                sesion.setAttribute("nombres", u.getNombres());
+                sesion.setAttribute("id", u.getId());
+                request.getRequestDispatcher("/inicio.jsp").forward(request, response);
             }
             else { response.sendRedirect("index.jsp?status=2"); }
         }

@@ -8,17 +8,19 @@ package MyServlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Persona;
-import model.Usuario;
+import javax.servlet.http.HttpSession;
+import model.Publicacion;
 
 /**
  *
  * @author Ronald
  */
-public class Registro extends HttpServlet {
+@WebServlet(name = "Publicar", urlPatterns = {"/Publicar"})
+public class Publicar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,41 +37,22 @@ public class Registro extends HttpServlet {
         PrintWriter out = response.getWriter();
         try
         {
-            String usuario = request.getParameter("usuario");
+            String titulo = request.getParameter("titulo");
+            String mensaje = request.getParameter("mensaje");
             
-            if(Persona.isAvailable(usuario))
-            {
-                String nombres = request.getParameter("nombres");
-                String apellidos = request.getParameter("apellidos");
-                String contrasena = request.getParameter("contrasena");
-                String email = request.getParameter("email");
-                String[] preferencias = request.getParameterValues("preferencias");
-                
-                /* Subiendo la imagen */
-                
-                /* Fin de Subiendo la imagen */
-
-                Usuario u = new Usuario();
-                u.setNombres(nombres);
-                u.setApellidos(apellidos);
-                u.setUsuario(usuario);
-                u.setContrasena(contrasena);
-                u.setEmail(email);
-                u.setPreferencias(preferencias);
-
-                u.guardar();
-
-                response.sendRedirect("index.jsp?status=1");
-            }
-            else
-            {
-                response.sendRedirect("index.jsp?status=3");
-            }
-        }   
+            HttpSession sesion = request.getSession();
+            Integer usua_id = (Integer)sesion.getAttribute("id");
+            
+            Publicacion p = new Publicacion();
+            p.setTitulo(titulo);
+            p.setContenido(mensaje);
+            p.guardar(usua_id);
+            
+            response.sendRedirect("/EG4/inicio.jsp");
+        }
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            out.println(e.getMessage());
         }
         finally
         {

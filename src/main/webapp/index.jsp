@@ -75,7 +75,7 @@
                     <a href="#" class="forgot-password">¿Perdiste tu contraseña?</a>
                 </div>
             </form>
-            <form class="email-signup" method="POST" action="Registro">
+            <form class="email-signup" method="POST" enctype="multipart/form-data" action="Registro">
                 <div class="u-form-group">
                     <input type="text" name="nombres" placeholder="Nombres"/>
                 </div>
@@ -93,6 +93,9 @@
                 </div>
                 <div class="u-form-group">
                     <input type="email" name="email" placeholder="Email"/>
+                </div>
+                <div class="u-form-group">
+                    <input type="file" name="file" size="1" />
                 </div>
                 <div>
                     <div class="title_intereses">Seleccione sus intereses</div>

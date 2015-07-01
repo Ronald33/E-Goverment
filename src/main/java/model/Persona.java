@@ -17,11 +17,20 @@ import libraries.DB.DB;
  */
 abstract public class Persona
 {
+    protected int pers_id;
     protected String nombres;
     protected String apellidos;
     protected String usuario;
     protected String contrasena;
     protected String email;
+    
+    public int getPers_id() {
+        return pers_id;
+    }
+
+    public void setPers_id(int pers_id) {
+        this.pers_id = pers_id;
+    }
 
     public String getNombres() {
         return nombres;
@@ -89,12 +98,17 @@ abstract public class Persona
     public Boolean existe() throws SQLException, ClassNotFoundException
     {
         DB db = new DB();
-        String sql = "SELECT pers_nombres AS nombres FROM personas WHERE pers_contrasena = ? AND pers_usuario = ? LIMIT 1";
+        String sql = "SELECT pers_id, pers_nombres AS nombres FROM personas WHERE pers_contrasena = ? AND pers_usuario = ? LIMIT 1";
         ArrayList<Object> p = new ArrayList<Object>();
         p.add(this.contrasena);
         p.add(this.usuario);
         ResultSet rs = db.squery(sql, p);
-        if(rs.next()) { this.setNombres(rs.getString("nombres")); return true; }
+        if(rs.next())
+        {
+            this.setNombres(rs.getString("nombres"));
+            this.setPers_id(rs.getInt("pers_id"));
+            return true;
+        }
         else { return false; }
     }
 }

@@ -1,6 +1,8 @@
 package model;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import libraries.DB.DB;
 
@@ -9,6 +11,14 @@ public class Usuario extends Persona
     private int id;
     private String estado;
     private String[] preferencias;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String[] getPreferencias() {
         return preferencias;
@@ -65,6 +75,19 @@ public class Usuario extends Persona
             p.put("pepr_pers_id", this.id);
             p.put("pepr_pref_id", i_preferencia);
             db.insert("personas_preferencias", p);
+        }
+    }
+    
+    public void setIdByPersona() throws ClassNotFoundException, SQLException
+    {
+        DB db = new DB();
+        String sql = "SELECT usua_id AS id FROM usuarios where usua_pers_id = ? LIMIT 1";
+        ArrayList<Object> p = new ArrayList<Object>();
+        p.add(this.pers_id);
+        ResultSet rs = db.squery(sql, p);
+        while(rs.next())
+        {
+            this.setId(rs.getInt("id"));
         }
     }
 }
