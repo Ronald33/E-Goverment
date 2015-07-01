@@ -38,29 +38,6 @@
                     log in with Google
                 </a>
             </div>
-            <%
-                if(request.getParameter("status") != null)
-                {
-                    if(request.getParameter("status").equals("1"))
-                    {
-            %>
-                    <div class="exitoso">Registro Exitoso =)</div>
-            <%
-                    }
-                    if(request.getParameter("status").equals("2"))
-                    {
-            %>
-                    <div class="desconocido">Usuario Desconocido =(</div>
-            <%
-                    }
-                    if(request.getParameter("status").equals("3"))
-                    {
-            %>
-                    <div class="ocupado">EL usuario seleccionado ya existe</div>
-            <%
-                    }
-                }
-            %>
             <form class="email-login" method="POST" action="Login">
                 <div class="u-form-group">
                     <input type="text" name="usuario" placeholder="Usuario"/>
@@ -71,6 +48,29 @@
                 <div class="u-form-group">
                     <button>Ingresar</button>
                 </div>
+                <%
+                if(request.getParameter("status") != null)
+                {
+                    if(request.getParameter("status").equals("1"))
+                    {
+            %>
+                    <div class="message exitoso">Registro Exitoso =)</div>
+            <%
+                    }
+                    if(request.getParameter("status").equals("2"))
+                    {
+            %>
+                    <div class="message desconocido">Usuario Desconocido =(</div>
+            <%
+                    }
+                    if(request.getParameter("status").equals("3"))
+                    {
+            %>
+                    <div class="message ocupado">EL usuario seleccionado ya existe</div>
+            <%
+                    }
+                }
+            %>
                 <div class="u-form-group">
                     <a href="#" class="forgot-password">¿Perdiste tu contraseña?</a>
                 </div>
@@ -95,13 +95,14 @@
                     <input type="email" name="email" placeholder="Email"/>
                 </div>
                 <div>
+                    <div class="title_intereses">Seleccione sus intereses</div>
                     <%
                     while(preferencias.next())
                     {
                         int id = preferencias.getInt("id");
                         String nombre = preferencias.getString("nombre");
                     %>
-                    <div>
+                        <div class="intereses">
                         <input type="checkbox" name="preferencias" value="<%=id%>" id="<%=id%>" />
                         <label for="<%=id%>"><%=nombre%></label>
                     </div>
@@ -109,10 +110,11 @@
                     }
                     %>
                 </div>
-                <div class="u-form-group">
+                <div class="u-form-group btn-registro">
                     <button>Registrarse</button>
                 </div>
             </form>
+            <div style="clear:both"></div>
         </div>
 
         <script type="text/javascript" src="./resources/vendor/jquery-1.11.3.min.js"></script>

@@ -5,7 +5,8 @@ body{
     position:relative;
     margin: 10px auto;
     width: 500px;
-    height: 540px;
+    /*height: 540px;*/
+    height: auto;
     background-color: #fff;
     padding: 10px;
     border-radius: 3px;
@@ -122,4 +123,42 @@ body{
     text-decoration: underline;
     color: #888;
     font-size: 0.75rem;
+}
+
+.message
+{
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.exitoso
+{
+    color: #14CC34;
+}
+
+.desconocido
+{
+    color: #FF3434;
+}
+
+.ocupado
+{
+    color: #3434CC;
+}
+
+.title_intereses
+{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.intereses
+{
+    margin-bottom: 3px;
+}
+
+.btn-registro
+{
+    margin-top: 5px;
 }
