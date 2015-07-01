@@ -7,11 +7,14 @@ package MyServlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistance.Conexion;
 
 /**
  *
@@ -33,19 +36,23 @@ public class Test extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Test</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Test at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+       
+        try
+        {
+            ResultSet result;
+            Conexion conn = new Conexion();
+            //result = conn.query("SELECT * from Usuarios");
+            conn.query("SELECT * from Usuarios");
+            
+            /*while(result.next())
+            {
+                out.println(result.getString("nombre"));
+                out.println("<br/>");
+            }*/
+        }
+        catch(Exception e)
+        {
+            out.println("Error");
         }
     }
 

@@ -8,17 +8,18 @@ package MyServlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Persona;
-import model.Usuario;
 
 /**
  *
  * @author Ronald
  */
-public class Registro extends HttpServlet {
+@WebServlet(name = "Inicio", urlPatterns = {"/Inicio"})
+public class Inicio extends HttpServlet
+{
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,35 +36,11 @@ public class Registro extends HttpServlet {
         PrintWriter out = response.getWriter();
         try
         {
-            String usuario = request.getParameter("usuario");
-            
-            if(Persona.isAvailable(usuario))
-            {
-                String nombres = request.getParameter("nombres");
-                String apellidos = request.getParameter("apellidos");
-                String contrasena = request.getParameter("contrasena");
-                String email = request.getParameter("email");
-
-                Usuario u = new Usuario();
-                u.setNombres(nombres);
-                u.setApellidos(apellidos);
-                u.setUsuario(usuario);
-                u.setContrasena(contrasena);
-                u.setEmail(email);
-
-                u.guardar();
-
-                response.sendRedirect("index.jsp?status=1");
-            }
-            else
-            {
-                response.sendRedirect("index.jsp?status=3");
-            }
-        }   
+            request.getRequestDispatcher("inicio.jsp").forward(request, response);
+        }
         catch(Exception e)
         {
-            //System.err.println(e.getMessage());
-            out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         finally
         {

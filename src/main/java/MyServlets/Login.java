@@ -7,11 +7,17 @@ package MyServlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.Usuario;
 
 /**
  *
@@ -30,23 +36,32 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try
         {
-            String email = request.getParameter("email");
-            String pw = request.getParameter("password");
+            String usuario = request.getParameter("usuario");
+            String contrasena = request.getParameter("contrasena");
             
-            if ("Ronald.dev1@gmail.com".equals(email) && "123456".equals(pw))
+            Usuario u = new Usuario();
+            u.setUsuario(usuario);
+            u.setContrasena(contrasena);
+            
+            if(u.existe())
             {
-                response.sendRedirect("index2.jsp");
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("usuario", usuario);
+                response.sendRedirect("/EG4/Inicio");
             }
-            else
-            {
-                response.sendRedirect("login2.jsp");
-            }
-        } finally {
+            else { response.sendRedirect("index.jsp?status=2"); }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        finally
+        {
             out.close();
         }
     }
@@ -63,7 +78,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -77,7 +98,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
