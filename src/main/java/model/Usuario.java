@@ -6,7 +6,17 @@ import libraries.DB.DB;
 
 public class Usuario extends Persona
 {
+    private int id;
     private String estado;
+    private String[] preferencias;
+
+    public String[] getPreferencias() {
+        return preferencias;
+    }
+
+    public void setPreferencias(String[] preferencias) {
+        this.preferencias = preferencias;
+    }
 
     public String getEstado()
     {
@@ -18,8 +28,7 @@ public class Usuario extends Persona
         this.estado = estado;
     }
     
-    @Override
-    public int guardar() throws SQLException, ClassNotFoundException
+    public void guardar() throws ClassNotFoundException, SQLException
     {
         DB db = new DB();
         /* Insertamos a la Persona */
@@ -30,11 +39,32 @@ public class Usuario extends Persona
         p.put("pers_contrasena", this.contrasena);
         p.put("pers_email", this.email);
         db.insert("personas", p);
+        this.id = db.getLastId();
         /* Fin de Insertamos a la Persona */
-        
-        int pers_id = db.getLastId();
+        this.guardarUsuario();
+        this.guardarPreferencias();
+    }
+    
+    private void guardarUsuario() throws SQLException, ClassNotFoundException
+    {
+        DB db = new DB();
         HashMap<String, Object> p1 = new HashMap<String, Object>();
-        p1.put("usua_pers_id", pers_id);
-        return db.insert("usuarios", p1);
+        p1.put("usua_pers_id", this.id);
+        db.insert("usuarios", p1);
+    }
+    
+    private void guardarPreferencias() throws ClassNotFoundException, SQLException
+    {
+        DB db = new DB();
+        for(String preferencia : this.preferencias)
+        {
+            int i_preferencia = Integer.parseInt(preferencia);
+            System.out.println(preferencia);
+            System.out.println(i_preferencia);
+            HashMap<String, Object> p = new HashMap<String, Object>();
+            p.put("pepr_pers_id", this.id);
+            p.put("pepr_pref_id", i_preferencia);
+            db.insert("personas_preferencias", p);
+        }
     }
 }

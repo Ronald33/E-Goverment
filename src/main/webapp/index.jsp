@@ -98,8 +98,13 @@
                     <%
                     while(preferencias.next())
                     {
+                        int id = preferencias.getInt("id");
+                        String nombre = preferencias.getString("nombre");
                     %>
-                        <div><%=preferencias.getString("nombre")%></div>
+                    <div>
+                        <input type="checkbox" name="preferencias" value="<%=id%>" id="<%=id%>" />
+                        <label for="<%=id%>"><%=nombre%></label>
+                    </div>
                     <%
                     }
                     %>

@@ -32,7 +32,7 @@ public class Preferencias
     public static ResultSet getAll() throws ClassNotFoundException, SQLException
     {
         DB db = new DB();
-        String sql = "SELECT pref_nombre AS nombre FROM preferencias WHERE 1 ORDER BY nombre DESC";
+        String sql = "SELECT pref_id AS id, pref_nombre AS nombre FROM preferencias WHERE 1 ORDER BY nombre DESC";
         return db.squery(sql);
     }
 }

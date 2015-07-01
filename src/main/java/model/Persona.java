@@ -63,17 +63,17 @@ abstract public class Persona
         this.email = email;
     }
     
-    public int guardar() throws SQLException, ClassNotFoundException
-    {
-        DB db = new DB();
-        HashMap<String, Object> p = new HashMap<String, Object>();
-        p.put("nombres", this.nombres);
-        p.put("apellidos", this.apellidos);
-        p.put("usuario", this.usuario);
-        p.put("contrasena", this.contrasena);
-        p.put("email", this.email);
-        return db.insert("personas", p);
-    }
+//    public int guardar() throws SQLException, ClassNotFoundException
+//    {
+//        DB db = new DB();
+//        HashMap<String, Object> p = new HashMap<String, Object>();
+//        p.put("nombres", this.nombres);
+//        p.put("apellidos", this.apellidos);
+//        p.put("usuario", this.usuario);
+//        p.put("contrasena", this.contrasena);
+//        p.put("email", this.email);
+//        return db.insert("personas", p);
+//    }
     
     public static Boolean isAvailable(String usuario) throws SQLException, ClassNotFoundException
     {

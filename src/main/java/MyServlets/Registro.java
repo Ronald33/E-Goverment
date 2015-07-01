@@ -43,6 +43,7 @@ public class Registro extends HttpServlet {
                 String apellidos = request.getParameter("apellidos");
                 String contrasena = request.getParameter("contrasena");
                 String email = request.getParameter("email");
+                String[] preferencias = request.getParameterValues("preferencias");
 
                 Usuario u = new Usuario();
                 u.setNombres(nombres);
@@ -50,6 +51,7 @@ public class Registro extends HttpServlet {
                 u.setUsuario(usuario);
                 u.setContrasena(contrasena);
                 u.setEmail(email);
+                u.setPreferencias(preferencias);
 
                 u.guardar();
 
@@ -62,7 +64,7 @@ public class Registro extends HttpServlet {
         }   
         catch(Exception e)
         {
-            //System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
             out.println(e.getMessage());
         }
         finally
