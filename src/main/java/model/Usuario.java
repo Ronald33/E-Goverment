@@ -1,5 +1,7 @@
 package model;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ public class Usuario extends Persona
 {
     private int id;
     private String estado;
+    private InputStream imagen;
     private String[] preferencias;
 
     public int getId() {
@@ -54,12 +57,26 @@ public class Usuario extends Persona
         this.guardarUsuario();
         this.guardarPreferencias();
     }
+
+    public InputStream getImagen()
+    {
+        return imagen;
+    }
+
+    public void setImagen(InputStream imagen)
+    {
+        this.imagen = imagen;
+    }
     
     private void guardarUsuario() throws SQLException, ClassNotFoundException
     {
         DB db = new DB();
         HashMap<String, Object> p1 = new HashMap<String, Object>();
         p1.put("usua_pers_id", this.id);
+        p1.put("usua_imagen", this.imagen);
+        
+        System.out.println(this.imagen);
+        
         db.insert("usuarios", p1);
     }
     
@@ -89,5 +106,19 @@ public class Usuario extends Persona
         {
             this.setId(rs.getInt("id"));
         }
+    }
+    
+    public void getImage() throws ClassNotFoundException, SQLException
+    {
+        DB db = new DB();
+        String sql = "SELECT usua_imagen AS imagen FROM usuarios WHERE usua_id = 2";
+        ResultSet rs = db.squery(sql);
+        InputStream imagen;
+        while(rs.next())
+        {
+            imagen = rs.getBinaryStream("imagen");
+        }
+        //OutputStream output = response.getOutputStream();
+
     }
 }

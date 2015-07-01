@@ -95,7 +95,7 @@
                     <input type="email" name="email" placeholder="Email"/>
                 </div>
                 <div class="u-form-group">
-                    <input type="file" name="file" size="1" />
+                    <input type="file" name="imagen" size="1" />
                 </div>
                 <div>
                     <div class="title_intereses">Seleccione sus intereses</div>

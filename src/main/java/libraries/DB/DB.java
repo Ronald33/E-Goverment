@@ -1,5 +1,7 @@
 package libraries.DB;
 
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -136,6 +138,8 @@ public class DB
             else if(value.getClass().equals(Float.class)) { this.stmt.setFloat(index, (Float) value); }
             else if(value.getClass().equals(Long.class)) { this.stmt.setLong(index, (Long) value); }
             else if(value.getClass().equals(Boolean.class)) { this.stmt.setBoolean(index, (Boolean) value); }
+            else if(value.getClass().equals(java.io.FileInputStream.class)) { System.out.println("BLOB"); this.stmt.setBlob(index, (InputStream) value); }
+            else if(value.getClass().equals(File.class)) { System.out.println("FILE"); this.stmt.setBlob(index, (InputStream) value); }
             else { this.stmt.setString(index, (String) value); }
         }
     }

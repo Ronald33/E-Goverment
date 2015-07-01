@@ -244,8 +244,10 @@
                     String contenido = publicaciones.getString("contenido");
                     String fecha = publicaciones.getString("fecha");
                     String nombres = publicaciones.getString("nombres");
+                    String imagen = publicaciones.getString("imagen");
                 %>
                 <div class="time_line_wap">
+                    <img src="<%=imagen%>" />
                     <div class="time_line_caption"><div><%=fecha%></div></div>
                     <div class="time_line_paragraph">
                         <h1><a href="/VerPublicacion/<%=publ_id%>"><div><%=titulo%></div></a></h1>

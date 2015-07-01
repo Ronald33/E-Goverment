@@ -6,11 +6,14 @@
 package MyServlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import model.Persona;
 import model.Usuario;
 
@@ -18,6 +21,7 @@ import model.Usuario;
  *
  * @author Ronald
  */
+@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
 public class Registro extends HttpServlet {
 
     /**
@@ -29,9 +33,10 @@ public class Registro extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        //response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try
         {
@@ -46,7 +51,27 @@ public class Registro extends HttpServlet {
                 String[] preferencias = request.getParameterValues("preferencias");
                 
                 /* Subiendo la imagen */
+                InputStream inputStream = null; // input stream of the upload file
+
+                // obtains the upload file part in this multipart request
+                Part filePart = request.getPart("imagen");
                 
+                if(filePart != null)
+                {
+                    out.println("Primer IF");
+                    // prints out some information for debugging
+                    System.out.println(filePart.getName());
+                    System.out.println(filePart.getSize());
+                    System.out.println(filePart.getContentType());
+
+                    // obtains input stream of the upload file
+                    inputStream = filePart.getInputStream();
+                }
+                else
+                {
+                    System.out.println("No esta llegando la imagen");
+                }
+
                 /* Fin de Subiendo la imagen */
 
                 Usuario u = new Usuario();
@@ -56,6 +81,8 @@ public class Registro extends HttpServlet {
                 u.setContrasena(contrasena);
                 u.setEmail(email);
                 u.setPreferencias(preferencias);
+                if(inputStream != null) { u.setImagen(inputStream); out.println("IF"); }
+                else { out.println("ELSE"); }
 
                 u.guardar();
 
