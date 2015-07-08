@@ -64,8 +64,7 @@ public class Publicacion
     public static ResultSet getPublicacionesSeguidores(int usua_id) throws ClassNotFoundException, SQLException
     {
         DB db = new DB();
-        usua_id = 2;
-        String sql = "SELECT publ_id, publ_titulo AS titulo, publ_contenido AS contenido, publ_fecha_publicacion AS fecha, usua_id, pers_nombres AS nombres, usua_imagen AS imagen FROM publicaciones JOIN usuarios ON publ_usua_id = usua_id JOIN personas ON usua_pers_id = pers_id WHERE publ_usua_id in (SELECT segu_seguidos AS seguidos FROM seguimientos WHERE segu_usua_id = ? UNION SELECT ?)";
+        String sql = "SELECT publ_id, publ_titulo AS titulo, publ_contenido AS contenido, publ_fecha_publicacion AS fecha, usua_id, pers_nombres AS nombres FROM publicaciones JOIN usuarios ON publ_usua_id = usua_id JOIN personas ON usua_pers_id = pers_id WHERE publ_usua_id in (SELECT segu_seguidos AS seguidos FROM seguimientos WHERE segu_usua_id = ? UNION SELECT ?)";
         System.out.println(sql);
         ArrayList<Object> p = new ArrayList<Object>();
         p.add(usua_id);

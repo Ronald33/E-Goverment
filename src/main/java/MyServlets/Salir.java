@@ -38,7 +38,7 @@ public class Salir extends HttpServlet {
         {
             HttpSession sesion = request.getSession();
             sesion.invalidate();
-            response.sendRedirect("/home.jsp");
+            response.sendRedirect("/EG4/index.jsp");
         }
         catch(Exception e)
         {

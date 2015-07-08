@@ -119,6 +119,15 @@ public class Usuario extends Persona
             imagen = rs.getBinaryStream("imagen");
         }
         //OutputStream output = response.getOutputStream();
-
+    }
+    
+    public static ResultSet getNoSeguidores(int usua_id) throws ClassNotFoundException, SQLException
+    {
+        DB db = new DB();
+        String sql = "SELECT pers_nombres AS nombres FROM usuarios JOIN personas ON usua_pers_id = pers_id WHERE usua_id NOT IN (SELECT segu_seguidos FROM  seguimientos WHERE segu_usua_id = ?) AND usua_id != ?";
+        ArrayList<Object> p = new ArrayList<Object>();
+        p.add(usua_id);
+        p.add(usua_id);
+        return db.squery(sql, p);
     }
 }

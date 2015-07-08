@@ -89,9 +89,6 @@
                     <input type="password" name="contrasena" placeholder="Contraseña"/>
                 </div>
                 <div class="u-form-group">
-                    <input type="password" placeholder="Confirme la Contraseña"/>
-                </div>
-                <div class="u-form-group">
                     <input type="email" name="email" placeholder="Email"/>
                 </div>
                 <div class="u-form-group">

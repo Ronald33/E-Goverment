@@ -1,17 +1,22 @@
-<%-- 
+<%--    
     Document   : dashboard
     Created on : 30/06/2015, 01:03:44 PM
     Author     : Ronald
 --%>
 
+<%@page import="model.Usuario"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="model.Publicacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     ResultSet publicaciones = null;
+    ResultSet noSeguidores = null;
     try
     {
-        publicaciones = Publicacion.getPublicacionesSeguidores(1);
+        int id = (Integer)session.getAttribute("id");
+        
+        publicaciones = Publicacion.getPublicacionesSeguidores(id);
+        noSeguidores = Usuario.getNoSeguidores(id);
     }
     catch(Exception e)
     {
@@ -72,7 +77,6 @@
                 <li><a href="#templatemo_about"><i class="glyphicon glyphicon-briefcase"></i> &nbsp; Grupos</a></li>
                 <li><a href="#templatemo_events"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp; Gobiernos</a></li>
                 <li><a href="#templatemo_timeline"><i class="glyphicon glyphicon-calendar"></i> &nbsp; Timeline</a></li>
-                <li><a rel="nofollow" href="http://www.google.com" class="external-link"><i class="glyphicon glyphicon-export"></i> &nbsp; External</a></li>
                 <li><a href="#templatemo_contact"><i class="glyphicon glyphicon-phone-alt"></i> &nbsp; Publicar</a></li>
             </ul>
         </div>
@@ -81,7 +85,7 @@
             <div id="templatemo_banner_menu">
                 <div class="container-fluid">
                     <div class="col-xs-4 templatemo_logo">
-                        <a href="#">
+                        <a href="/EG4/Salir">
                             <!--<img src="./images/templatemo_logo.jpg" id="logo_img" alt="dragonfruit website template" title="Dragonfruit Template" />-->
                             <h1 id="logo_text">¡Participa! <span><%=session.getAttribute("nombres")%></span></h1>
                         </a>
@@ -92,7 +96,6 @@
                             <li><a href="#templatemo_about">Grupos</a></li>
                             <li><a href="#templatemo_events">Gobiernos</a></li>
                             <li><a href="#templatemo_timeline">Timeline</a></li>
-                            <li><a rel="nofollow" href="http://www.google.com" class="external-link">External</a></li>
                             <li><a href="#templatemo_contact">Publicar</a></li>
                         </ul>
                     </div>
@@ -131,46 +134,25 @@
                     <a href="#"><span class="glyphicon glyphicon-chevron-left pre_next"></span></a>
                 </div>
                 <div id="testimonial_text_wap" class="col-xs-9 col-sm-10">
-                    <div class="testimonial_text">
-                        <div class="col-sm-3">
-                            <img src="./resources/images/templatemo_member_01.jpg" class="img-responsive" alt="Business Development Manager" />
-                        </div>
-                        <div class="col-sm-9">
-                            <h2>Tracy Mya</h2>
-                            <!--<h3>Business Development Manager</h3>-->
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        </div>
-                    </div><!--.testimonial_text-->
-                    <div class="testimonial_text">
-                        <div class="col-sm-3">
-                            <img src="./resources/images/templatemo_member_02.jpg" class="img-responsive" alt="Chief Public Relation Officer" />
-                        </div>
-                        <div class="col-sm-9">
-                            <h2>Mary Kas</h2>
-                            <h3>Chief Public Relation Officer</h3>
-                            <p>Fusce et orci mollis, congue lorem vitae, semper erat. Curabitur quis pellentesque nisl, at adipiscing libero. Integer at sem dui. Fusce posuere aliquet dolor, at viverra odio accumsan sed. Sed pharetra vel risus a convallis. Maecenas in adipiscing libero, id molestie odio. Phasellus id pharetra mauris, sit amet varius velit. Aliquam non dapibus libero.</p>
-                        </div>
-                    </div><!--.testimonial_text-->
-                    <div class="testimonial_text">
-                        <div class="col-sm-3">
-                            <img src="./resources/images/templatemo_member_03.jpg" class="img-responsive" alt="Marketing Executive" />
-                        </div>
-                        <div class="col-sm-9">
-                            <h2>Julia Pan</h2>
-                            <h3>Marketing Executive</h3>
-                            <p>Maecenas nec rhoncus orci. Morbi tempus ut leo ac varius. Cras convallis sagittis dignissim. Aenean diam libero, venenatis eu risus eu, tincidunt porttitor orci. Nulla consequat mi et lectus vehicula condimentum. Nulla ullamcorper dolor vehicula dolor interdum, eget fermentum ligula bibendum. Sed vel dolor libero.</p>
-                        </div>
-                    </div><!--.testimonial_text-->
-                    <div class="testimonial_text">
-                        <div class="col-sm-3">
-                            <img src="./resources/images/templatemo_member_04.jpg" class="img-responsive" alt="Chief Executive Officer" />
-                        </div>
-                        <div class="col-sm-9">
-                            <h2>Linda Von</h2>
-                            <h3>Chief Executive Officer</h3>
-                            <p>Donec lacinia erat quis venenatis varius. Suspendisse non turpis vitae libero interdum lacinia. Nulla in nibh arcu. Donec quam neque, porta at pellentesque at, imperdiet ut velit. Pellentesque luctus ac nunc et hendrerit. Aliquam eu scelerisque eros. Vestibulum scelerisque mi nec augue condimentum rhoncus.</p>
-                        </div>
-                    </div><!--.testimonial_text-->        </div><!--#testimonial_text_wap-->
+                    <%
+                    while(noSeguidores.next())
+                    {
+                        String nombres = noSeguidores.getString("nombres");
+                    %>
+                        <div class="testimonial_text">
+                            <div class="col-sm-3">
+                                <img src="./resources/images/templatemo_member_01.jpg" class="img-responsive" alt="Business Development Manager" />
+                            </div>
+                            <div class="col-sm-9">
+                                <h2><%=nombres%></h2>
+                                <!--<h3>Business Development Manager</h3>-->
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            </div>
+                        </div><!--.testimonial_text-->
+                    <%
+                    }
+                    %>
+                   </div><!--#testimonial_text_wap-->
                 <div class="col-xs-1 pre_next_wap" id="next_testimonial">
                     <a href="#"><span class="glyphicon glyphicon-chevron-right pre_next"></span></a>
                 </div>
@@ -244,10 +226,8 @@
                     String contenido = publicaciones.getString("contenido");
                     String fecha = publicaciones.getString("fecha");
                     String nombres = publicaciones.getString("nombres");
-                    String imagen = publicaciones.getString("imagen");
                 %>
                 <div class="time_line_wap">
-                    <img src="<%=imagen%>" />
                     <div class="time_line_caption"><div><%=fecha%></div></div>
                     <div class="time_line_paragraph">
                         <h1><a href="/VerPublicacion/<%=publ_id%>"><div><%=titulo%></div></a></h1>
